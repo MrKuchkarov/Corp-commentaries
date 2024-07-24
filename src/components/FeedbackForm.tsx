@@ -1,7 +1,10 @@
-import { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import { MAX_CHARACTERS } from "../lib/constants.ts";
 
-const FeedbackForm = () => {
+type TFeedbackFormProps = {
+  onAddToList: (text: string) => void;
+};
+const FeedbackForm = ({ onAddToList }: TFeedbackFormProps) => {
   const [text, setText] = useState("");
   const charCount = MAX_CHARACTERS - text.length;
   const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -11,8 +14,14 @@ const FeedbackForm = () => {
     }
     setText(newText);
   };
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    onAddToList(text);
+    setText("");
+  };
+
   return (
-    <form className="form">
+    <form onSubmit={handleSubmit} className="form">
       <textarea
         id="feedback-textarea"
         placeholder="..."

@@ -3,15 +3,18 @@ import Logo from "./Logo.tsx";
 import PageHeading from "./PageHeading.tsx";
 import FeedbackForm from "./FeedbackForm.tsx";
 
-const Header = () => {
-    return (
-        <header>
-            <Pattern />
-            <Logo />
-            <PageHeading />
-            <FeedbackForm   />
-        </header>
-    );
+type THeaderProps = {
+  handleAddToList: (text: string) => void;
+};
+const Header = ({ handleAddToList }: THeaderProps) => {
+  return (
+    <header>
+      <Pattern />
+      <Logo />
+      <PageHeading />
+      <FeedbackForm onAddToList={handleAddToList} />
+    </header>
+  );
 };
 
 export default Header;
