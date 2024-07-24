@@ -1,10 +1,11 @@
-type THashtagItem = {
+type THashtagItemProps = {
   company: string;
+  onSelectCompany: (company: string) => void;
 };
-const HashtagItem = ({ company }: THashtagItem) => {
+const HashtagItem = ({ onSelectCompany, company }: THashtagItemProps) => {
   return (
     <li key={company}>
-      <button>#{company}</button>
+      <button onClick={() => onSelectCompany(company)}>#{company}</button>
     </li>
   );
 };
