@@ -1,6 +1,6 @@
-import Footer from "./Footer.tsx";
-import Container from "./Container.tsx";
-import HashtagList from "./HashtagList.tsx";
+import Footer from "./layout/Footer.tsx";
+import Container from "./layout/Container.tsx";
+import HashtagList from "./hashtag/HashtagList.tsx";
 import { useEffect, useState } from "react";
 import { TFeedbackItem } from "../lib/types";
 
@@ -8,6 +8,12 @@ function App() {
   const [feedbackItems, setFeedbackItems] = useState<TFeedbackItem[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+
+  const companyList = feedbackItems
+    .map((item) => item.company)
+    .filter((company, index, array) => {
+      return array.indexOf(company) === index;
+    });
 
   const handleAddToList = async (text: string) => {
     const companyName = text
@@ -66,7 +72,7 @@ function App() {
         feedbackItems={feedbackItems}
         handleAddToList={handleAddToList}
       />
-      <HashtagList />
+      <HashtagList companyList={companyList} />
     </div>
   );
 }

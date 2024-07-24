@@ -1,5 +1,5 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
-import { MAX_CHARACTERS } from "../lib/constants.ts";
+import { ChangeEvent, FormEvent, useState } from "react";
+import { MAX_CHARACTERS } from "../../lib/constants.ts";
 
 type TFeedbackFormProps = {
   onAddToList: (text: string) => void;
